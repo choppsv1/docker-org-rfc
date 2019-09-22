@@ -1,0 +1,6 @@
+#!/bin/bash
+
+EVERSION=${DOCKER_TAG%-*}
+ORG_RELEASE=${DOCKER_TAG#*-}
+
+docker build --build-arg EVERSION=${EVERSION} ORG_RELEASE=${ORG_RELEASE} -f Dockerfile -t $IMAGE_NAME .
