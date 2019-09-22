@@ -1,6 +1,11 @@
 #!/bin/bash
 
-EVERSION=${DOCKER_TAG%-*}
-ORG_RELEASE=${DOCKER_TAG#*-}
+if [[ ${DOCKER_TAG} == latest ]]; then
+    EVERSION=26.3
+    ORG_RELEASE=9.2.2
+else
+    EVERSION=${DOCKER_TAG%-*}
+    ORG_RELEASE=${DOCKER_TAG#*-}
+fi
 
 docker build --build-arg EVERSION=${EVERSION} ORG_RELEASE=${ORG_RELEASE} -f Dockerfile -t $IMAGE_NAME .
