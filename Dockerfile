@@ -16,10 +16,10 @@ RUN make
 RUN make install
 
 ARG ORG_RELEASE=9.2.2
-RUN mkdir -p /tmp/org-${ORG_RELEASE}
+RUN mkdir -p /tmp/org-${ORG_RELEASE} && \
     (cd /tmp/org-${ORG_RELEASE} && \
      curl -fL --silent https://code.orgmode.org/bzg/org-mode/archive/release_${ORG_RELEASE}.tar.gz | tar --strip-components=1 -xzf - && \
      make autoloads lisp)
 
-WORKDIR /work
+WORKDIR /
 CMD [ "bash" ]
