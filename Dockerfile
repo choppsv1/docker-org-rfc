@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 RUN apt-get update && \
         apt-get upgrade -y && \
         apt-get install -y build-essential curl tidy python-pip && \
@@ -7,14 +7,14 @@ RUN apt-get update && \
     pip install xml2rfc
 
 ENV SHELL=/bin/bash
-ARG EVERSION=26.3
+ARG EVERSION=27.2
 RUN curl -O http://ftp.gnu.org/gnu/emacs/emacs-$EVERSION.tar.gz && \
     tar xf emacs-$EVERSION.tar.gz
 
 WORKDIR emacs-$EVERSION
 RUN env CANNOT_DUMP=yes ./configure && make && make install
 
-ARG ORG_RELEASE=9.2.2
+ARG ORG_RELEASE=9.4.4
 RUN mkdir -p /tmp/org-${ORG_RELEASE} && \
     (cd /tmp/org-${ORG_RELEASE} && \
      curl -fL --silent https://code.orgmode.org/bzg/org-mode/archive/release_${ORG_RELEASE}.tar.gz | tar --strip-components=1 -xzf - && \
