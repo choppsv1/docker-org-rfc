@@ -1,8 +1,8 @@
 #!/bin/bash -x
 
 if [[ ${DOCKER_TAG} == latest ]]; then
-    EVERSION=26.3
-    ORG_RELEASE=9.2.2
+    EVERSION=27.2
+    ORG_RELEASE=9.4.4
 else
     EVERSION=${DOCKER_TAG%-*}
     ORG_RELEASE=${DOCKER_TAG#*-}
